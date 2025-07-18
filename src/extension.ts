@@ -7,6 +7,53 @@ import { promisify } from 'util';
 const execAsync = promisify(exec);
 const COMMAND_TIMEOUT = 10000;
 
+async function checkClipboardHasImage(platform: string): Promise<boolean> {
+	const psScript = `
+try {
+    Add-Type -AssemblyName System.Windows.Forms
+    $files = [System.Windows.Forms.Clipboard]::GetFileDropList()
+    if ($files -and $files.Count -gt 0) {
+        $sourceFile = $files[0]
+        $imageExtensions = @('.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp', '.svg', '.ico', '.tiff', '.tif')
+        $extension = [System.IO.Path]::GetExtension($sourceFile).ToLower()
+        if ($imageExtensions -contains $extension) {
+            Write-Output "true"
+            exit 0
+        }
+    }
+    
+    $image = [System.Windows.Forms.Clipboard]::GetImage()
+    if ($image -ne $null) {
+        $image.Dispose()
+        Write-Output "true"
+        exit 0
+    }
+    
+    Write-Output "false"
+} catch {
+    Write-Output "false"
+}`.trim();
+
+	let command: string;
+	if (platform === 'wsl') {
+		const escapedScript = psScript
+			.replace(/\$/g, '\\$')
+			.replace(/"/g, '\\"')
+			.replace(/`/g, '\\`');
+		command = `powershell.exe -NoProfile -Command "${escapedScript}"`;
+	} else {
+		const escapedScript = psScript.replace(/"/g, '\\"');
+		command = `powershell -NoProfile -Command "${escapedScript}"`;
+	}
+
+	try {
+		const { stdout } = await execAsync(command, { timeout: 5000 });
+		return stdout.trim() === 'true';
+	} catch {
+		return false;
+	}
+}
+
 function getPlatform(): string | null {
 	if (process.platform === 'win32') {
 		return 'windows';
@@ -124,6 +171,13 @@ export function activate(context: vscode.ExtensionContext) {
 			const platform = getPlatform();
 			if (!platform) {
 				vscode.window.showErrorMessage('Only supported on Windows and WSL environments');
+				return;
+			}
+
+			// Quick check if clipboard contains an image
+			const hasImage = await checkClipboardHasImage(platform);
+			if (!hasImage) {
+				vscode.window.showWarningMessage('No image found in clipboard. Copy an image or image file and try again.');
 				return;
 			}
 
