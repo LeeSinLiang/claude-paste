@@ -7,7 +7,7 @@ Save clipboard images instantly to your workspace for seamless referencing with 
 - **One-Click Image Saving**: Press `Ctrl+Shift+V` (Windows/Linux) or `Cmd+Shift+V` (macOS) to save clipboard images
 - **Smart Detection**: Automatically detects both image files and screenshot data in clipboard
 - **Cross-Platform Support**: Works on Windows, WSL2, macOS, and Linux
-- **Organized Storage**: Images saved to `.temp/` folder with timestamped filenames
+- **Organized Storage**: Images saved to `temp/` folder with timestamped filenames
 - **File Size Display**: Shows image size and provides easy path copying
 - **Robust Error Handling**: Validates image integrity and provides helpful error messages
 
@@ -15,7 +15,7 @@ Save clipboard images instantly to your workspace for seamless referencing with 
 
 1. Copy any image to your clipboard (screenshot, copied image file, etc.)
 2. Use `Ctrl+Shift+V` or run "Claude Paste: Save Clipboard Image" from command palette
-3. Image is instantly saved to `.temp/clipboard-image-YYYYMMDD_HHMMSS_fff.png`
+3. Image is instantly saved to `temp/clipboard-image-YYYYMMDD_HHMMSS_fff.png`
 4. Get notification with file path and size - click "Copy Path" to copy the relative path
 
 Perfect for quickly saving images to reference in Claude Code conversations!
@@ -50,7 +50,7 @@ Perfect for quickly saving images to reference in Claude Code conversations!
 Images are saved to:
 ```
 your-workspace/
-├── .temp/
+├── temp/
 │   ├── clipboard-image-20250718_143052_123.png
 │   ├── clipboard-image-20250718_143105_456.jpg
 │   └── ...

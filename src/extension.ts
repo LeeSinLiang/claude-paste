@@ -184,7 +184,7 @@ async function getImageFromClipboard(platform: string): Promise<string> {
 	}
 
 	const workspaceRoot = workspaceFolders[0].uri.fsPath;
-	const tempDir = path.join(workspaceRoot, '.temp');
+	const tempDir = path.join(workspaceRoot, 'temp');
 	await fs.ensureDir(tempDir);
 
 	// Handle Linux platform
@@ -332,7 +332,7 @@ export function activate(context: vscode.ExtensionContext) {
 						throw new Error('Workspace folder no longer available');
 					}
 					const workspaceRoot = workspaceFolders[0].uri.fsPath;
-					finalPath = path.join(workspaceRoot, '.temp', filename);
+					finalPath = path.join(workspaceRoot, 'temp', filename);
 				}
 				// For Linux and macOS, imagePath is already the correct final path
 				
