@@ -1,71 +1,91 @@
-# claude-paste README
+# Claude Paste
 
-This is the README for your extension "claude-paste". After writing up a brief description, we recommend including the following sections.
+Save clipboard images instantly to your workspace for seamless referencing with Claude Code and other AI tools.
 
-## Features
+## 🚀 Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **One-Click Image Saving**: Press `Ctrl+Shift+V` (Windows/Linux) or `Cmd+Shift+V` (macOS) to save clipboard images
+- **Smart Detection**: Automatically detects both image files and screenshot data in clipboard
+- **Cross-Platform Support**: Works on Windows, WSL2, macOS, and Linux
+- **Organized Storage**: Images saved to `.temp/` folder with timestamped filenames
+- **File Size Display**: Shows image size and provides easy path copying
+- **Robust Error Handling**: Validates image integrity and provides helpful error messages
 
-For example if there is an image subfolder under your extension project workspace:
+## 📋 How It Works
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Copy any image to your clipboard (screenshot, copied image file, etc.)
+2. Use `Ctrl+Shift+V` or run "Claude Paste: Save Clipboard Image" from command palette
+3. Image is instantly saved to `.temp/clipboard-image-YYYYMMDD_HHMMSS_fff.png`
+4. Get notification with file path and size - click "Copy Path" to copy the relative path
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Perfect for quickly saving images to reference in Claude Code conversations!
 
-## Requirements
+## 🔧 Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+### Windows & WSL2
+- PowerShell (included with Windows)
+- .NET Framework (usually pre-installed)
 
-## Extension Settings
+### macOS
+- `pngpaste` utility: `brew install pngpaste`
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### Linux
+- **X11 systems**: `sudo apt-get install xclip`
+- **Wayland systems**: `sudo apt-get install wl-clipboard`
+- Auto-detects your display server (X11/Wayland)
 
-For example:
+## ⚙️ Usage
 
-This extension contributes the following settings:
+### Command Palette
+1. Open Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
+2. Type "Claude Paste: Save Clipboard Image"
+3. Press Enter
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+### Keyboard Shortcut
+- Windows/Linux: `Ctrl+Shift+V`
+- macOS: `Cmd+Shift+V`
 
-## Known Issues
+## 🗂️ File Organization
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Images are saved to:
+```
+your-workspace/
+├── .temp/
+│   ├── clipboard-image-20250718_143052_123.png
+│   ├── clipboard-image-20250718_143105_456.jpg
+│   └── ...
+```
 
-## Release Notes
+Filename format: `clipboard-image-YYYYMMDD_HHMMSS_fff.{ext}`
 
-Users appreciate release notes as you update your extension.
+## 🔍 Supported Platforms
 
-### 1.0.0
+- ✅ **Windows** - Native PowerShell support
+- ✅ **WSL2** - Full Ubuntu/Windows integration  
+- ✅ **macOS** - Via pngpaste utility
+- ✅ **Linux** - X11 (xclip) and Wayland (wl-clipboard) support
 
-Initial release of ...
+## 🐛 Known Issues
 
-### 1.0.1
+- Large images (>50MB) are rejected for performance
+- Requires active workspace folder
+- Linux: Requires X11 (xclip) or Wayland (wl-clipboard) utilities
 
-Fixed issue #.
+## 📝 Release Notes
 
-### 1.1.0
+### 0.0.1
 
-Added features X, Y, and Z.
+- Initial release
+- Full cross-platform support: Windows, WSL2, macOS, and Linux
+- Smart clipboard detection for files and screenshots
+- Auto-detects Linux display server (X11/Wayland)
+- Robust error handling and file validation
+- Smart filename generation with collision prevention
 
 ---
 
-## Following extension guidelines
+## 💡 Perfect for Claude Code Users
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+This extension was designed specifically for developers using Claude Code who need to quickly save and reference images in their conversations. No more manual saving - just copy, paste, and reference!
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Enjoy seamless image workflow with Claude Code! 🎉**
