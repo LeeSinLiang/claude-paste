@@ -1,8 +1,10 @@
 {
   "name": "claude-paste",
-  "displayName": "Claude Paste",
+  "displayName": "Claude Paste: Save Clipboard Image",
   "description": "Save image temporarily from your clipboard to your local project for easy file reference with Claude.",
-  "version": "0.0.1",
+  "publisher": "sllee",
+  "repository": "https://github.com/LeeSinLiang/claude-paste",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.102.0"
   },

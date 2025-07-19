@@ -1,4 +1,4 @@
-# Claude Paste
+# Claude Paste: Save Clipboard Image!
 
 Save clipboard images instantly to your workspace for seamless referencing with Claude Code and other AI tools.
 
@@ -73,7 +73,7 @@ Filename format: `clipboard-image-YYYYMMDD_HHMMSS_fff.{ext}`
 
 ## 📝 Release Notes
 
-### 0.0.1
+### 1.0.0
 
 - Initial release
 - Full cross-platform support: Windows, WSL2, macOS, and Linux
